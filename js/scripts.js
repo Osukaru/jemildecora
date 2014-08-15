@@ -251,17 +251,11 @@ $(document).ready(function () {
             error = 1;
         }
 
-        var dataString = 'name=' + name + '&email=' + email + '&text=' + message;
-
         if (error === 0) {
-            $.ajax({
-                type: "POST",
-                url: "mail.php",
-                data: dataString,
-                success: function () {
+            $.post( 'https://osukaru.wufoo.com.mx/forms/z1edbgl10qc2b9o/#public', {Field3: $('form-name').val(), Field6: $('form-email').val(), Field7: $('form-msg').val(), comment: '', idstamp: 'btTtbnpLQfvJvVJpV5G3x0K7epWUz8TZRwwj9kiyzwc='})
+                .done(function( data ) {
                     $('#details-error').fadeOut(1000);
                     $('#form-sent').fadeIn(1000);
-                }
             });
             return false;
         }
